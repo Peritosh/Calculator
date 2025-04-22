@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <title>Calculator</title>
+        <script src="https://code.responsivevoice.org/responsivevoice.js?key=8UXallZz"></script>
+    </head>
+    <body>
+        <div class="cal">
+            <table>
+                <tr>
+                    <td colspan="4"><input type="text" class="box" id="output"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="AC" id="b1" class="left" onclick="clearall()" ></td>
+                    <td><input type="button" value="DEL" id="b1" onclick="deleteLast()"></td>
+                    <td><input type="button" value="/" id="b1" onclick="appendValue('/')"></td>
+                    <td><input type="button" value="*" id="b1" onclick="appendValue('*')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="7" id="b2" class="left" onclick="appendValue('7')"></td>
+                    <td><input type="button" value="8" id="b2" onclick="appendValue('8')"></td>
+                    <td><input type="button" value="9" id="b2" onclick="appendValue('9')"></td>
+                    <td><input type="button" value="-" id="b2" onclick="appendValue('-')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="4" id="b3" class="left" onclick="appendValue('4')"></td>
+                    <td><input type="button" value="5" id="b3" onclick="appendValue('5')"></td>
+                    <td><input type="button" value="6" id="b3" onclick="appendValue('6')"></td>
+                    <td><input type="button" value="+" id="b3" onclick="appendValue('+')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="1" id="b4" class="left" onclick="appendValue('1')"></td>
+                    <td><input type="button" value="2" id="b4" onclick="appendValue('2')"></td>
+                    <td><input type="button" value="3" id="b4" onclick="appendValue('3')"></td>
+                    <td rowspan="2"><input type="button" value="=" id="b4" class="btn2" onclick="calculate()"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" value="0" id="b5" class="btn1" onclick="appendValue('0')"></td>
+                    <td><input type="button" value="." id="b5" onclick="appendValue('.')"></td>
+                </tr>
+                
+            </table>
+        </div>
+    </body>
+    <script>
+
+        responsiveVoice.speak("Hello from calculator", "UK English Male");
+        function appendValue(val) 
+        {
+        document.getElementById("output").value += val;
+        speakValue(val);
+        }
+
+        function clearall(){
+            document.getElementById("output").value="";
+            ResponseAudio.speak("Clear all");
+        }
+        
+        function deleteLast() {
+        const output = document.getElementById("output");
+        output.value = output.value.slice(0, -1);
+        }
+
+        function calculate() {
+        const output = document.getElementById("output");
+        try {
+            output.value = eval(output.value);
+        } catch {
+            output.value = "Error";
+        }
+        }
+    </script>
+    <style>
+        .cal{
+            height: 510px;
+            width: 20.7%;
+            background-color: black;
+            margin-left: 37%;
+            border-radius: 7px;
+        }
+        input{
+            height: 55px;
+            width: 65px;
+            background-color: rgb(45, 43, 43);
+            margin-left: 5px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border:none;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+        .box{
+            height: 130px;
+            width: 300px;
+            background-color: rgb(159, 151, 151);
+            font-size: 40px;
+        }
+        #b1{
+            margin-top: 10px;
+        }
+        #b1:hover{background-color: white; color: black;}
+        #b2:hover{background-color: white; color: black;}
+        #b3:hover{background-color: white; color: black;}
+        #b4:hover{background-color: white; color: black;}
+        #b5:hover{background-color: white; color: black;}
+        .btn1{
+            height: 55px;
+            width: 150px;
+        }
+        .btn1:hover{background-color: blueviolet;}
+        .btn2{
+            height: 140px;
+            width: 65px;
+        }
+        .btn2:hover{background-color: blueviolet;}
+    </style>
+</html>
